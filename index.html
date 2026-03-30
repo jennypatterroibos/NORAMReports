@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Roibos NORAM + Caribbean — Command Center · Week ending Mar 22, 2026</title>
+<title>Roibos NORAM + Caribbean — Command Center · Week ending Mar 29, 2026</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'Segoe UI',Arial,sans-serif;font-size:13px;background:#f0eee9;color:#1a0a10;}
@@ -14,7 +14,7 @@ body{font-family:'Segoe UI',Arial,sans-serif;font-size:13px;background:#f0eee9;c
 .ts{font-size:11px;color:#b8909a;margin-top:2px;}
 .br{font-size:11px;color:#b8909a;}
 .nv{background:#fff;border-bottom:1px solid #e8e0e4;padding:0 28px;display:flex;flex-wrap:wrap;}
-.nt{font-size:13px;font-weight:500;color:#8a7080;padding:13px 16px 12px;cursor:pointer;border-bottom:2.5px solid transparent;white-space:nowrap;transition:color .15s;}
+.nt{font-size:13px;font-weight:500;color:#8a7080;padding:13px 14px 12px;cursor:pointer;border-bottom:2.5px solid transparent;white-space:nowrap;transition:color .15s;}
 .nt:hover{color:#3d1525;}
 .nt.on{color:#E64847;border-bottom-color:#E64847;}
 .bd{padding:28px;max-width:1400px;margin:0 auto;}
@@ -50,16 +50,22 @@ tbody tr.sum{background:#faf5f6;}
 tbody tr.sum td{font-weight:600;}
 tbody tr.cur{background:#fdf0f0;}
 tbody tr.cur td{font-weight:700;}
+tbody tr.flag-r td:first-child{border-left:3px solid #E64847;}
+tbody tr.flag-y td:first-child{border-left:3px solid #f59e0b;}
+tbody tr.flag-g td:first-child{border-left:3px solid #0d8a72;}
 td{font-size:13px;color:#1a0a10;padding:9px 14px;}
 td.r{text-align:right;font-variant-numeric:tabular-nums;}
 .cn{font-weight:600;}
 .g2{color:#0d8a72;font-weight:500;}
 .r2{color:#E64847;font-weight:500;}
+.y2{color:#b45309;font-weight:500;}
 .mu{color:#9a7e88;}
 .badge{display:inline-block;font-size:10px;font-weight:700;padding:2px 7px;border-radius:3px;letter-spacing:.03em;}
 .badge-g{background:#e6f4ee;color:#0d8a72;}
 .badge-r{background:#fdecea;color:#E64847;}
 .badge-y{background:#fef8e7;color:#b45309;}
+.badge-drop{background:#fdecea;color:#E64847;font-size:9px;padding:1px 5px;border-radius:2px;margin-left:4px;vertical-align:middle;}
+.badge-surge{background:#e6f4ee;color:#0d8a72;font-size:9px;padding:1px 5px;border-radius:2px;margin-left:4px;vertical-align:middle;}
 .tw{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:22px;}
 .bar-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
 .bar-wk{font-size:11px;width:44px;color:#9a7e88;flex-shrink:0;}
@@ -72,7 +78,16 @@ td.r{text-align:right;font-variant-numeric:tabular-nums;}
 .bar-row.latest .bar-wk{font-weight:700;color:#1a0a10;}
 .bar-row.latest .bar-val{font-weight:700;}
 .trend-wrap{padding:14px 20px 12px;}
-@media(max-width:900px){.kr{grid-template-columns:repeat(2,1fr);}.tw,.def-row{grid-template-columns:1fr;}}
+.q2-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:22px;}
+.q2c{background:#fff;border-radius:6px;border:1px solid #ede8ea;padding:18px 20px;}
+.q2c .kl{font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:#9a7e88;margin-bottom:8px;}
+.q2c .big{font-size:24px;font-weight:700;color:#1a0a10;letter-spacing:-.01em;line-height:1;}
+.q2c .sub{font-size:12px;color:#9a7e88;margin-top:4px;}
+.prog-wrap{margin-top:10px;}
+.prog-track{width:100%;height:8px;background:#f5eef0;border-radius:4px;overflow:hidden;}
+.prog-fill{height:100%;border-radius:4px;background:#951135;}
+.prog-label{font-size:11px;color:#9a7e88;margin-top:4px;}
+@media(max-width:900px){.kr{grid-template-columns:repeat(2,1fr);}.tw,.def-row,.q2-grid{grid-template-columns:1fr;}}
 @media(max-width:600px){.kr{grid-template-columns:1fr;}.nv{overflow-x:auto;}}
 </style>
 </head>
@@ -83,7 +98,7 @@ td.r{text-align:right;font-variant-numeric:tabular-nums;}
     <div class="rl">R</div>
     <div class="ti">
       <div class="tt">Roibos NORAM + Caribbean</div>
-      <div class="ts">Week ending Mar 22, 2026 &nbsp;·&nbsp; OTB snapshot Mar 23, 2026 &nbsp;·&nbsp; Roibos PG · Excl. OYO · Excl. Jose Navarro</div>
+      <div class="ts">Week ending Mar 29, 2026 &nbsp;·&nbsp; OTB snapshot Mar 30, 2026 &nbsp;·&nbsp; Roibos PG · Excl. OYO · Excl. Jose Navarro</div>
     </div>
   </div>
   <div class="br">Roibos Technologies</div>
@@ -97,43 +112,45 @@ td.r{text-align:right;font-variant-numeric:tabular-nums;}
   <div class="nt" onclick="go('dist',this)">Hotels Sold</div>
   <div class="nt" onclick="go('part',this)">Partners</div>
   <div class="nt" onclick="go('h',this)">Hotel Drops</div>
+  <div class="nt" onclick="go('pd',this)">Partner Drops</div>
+  <div class="nt" onclick="go('q2',this)">Q2 Pipeline</div>
 </div>
 
 <div class="bd">
 
-<!-- TAB 1: WEEKLY RECAP -->
+<!-- ══ TAB 1: WEEKLY RECAP ══ -->
 <div class="pn on" id="p-r">
   <div class="kr">
-    <div class="kc"><div class="kl">Consumed Mar 16–22</div><div class="kv">€279.6K</div><div class="kd">Stays checked in this week</div></div>
-    <div class="kc"><div class="kl">vs Mar 9–15</div><div class="kv g">+1.0%</div><div class="kd">Week-over-week</div></div>
-    <div class="kc"><div class="kl">New Bookings Made</div><div class="kv">€365.7K</div><div class="kd">Demand generated this week</div></div>
-    <div class="kc"><div class="kl">Room Nights</div><div class="kv">1,965</div><div class="kd">825 reservations · Avg ADR €142</div></div>
+    <div class="kc"><div class="kl">Consumed Mar 23–29</div><div class="kv">€288,976</div><div class="kd">Stays checked in this week</div></div>
+    <div class="kc"><div class="kl">vs Mar 16–22</div><div class="kv g">+3.4%</div><div class="kd">Week-over-week</div></div>
+    <div class="kc"><div class="kl">New Bookings Made</div><div class="kv">€337,791</div><div class="kd">Demand generated this week</div></div>
+    <div class="kc"><div class="kl">Room Nights</div><div class="kv">1,765</div><div class="kd">734 reservations · Avg ADR €164</div></div>
   </div>
   <div class="sc">
-    <div class="sn"><b>Consumed Revenue &amp; New Bookings · Mar 16–22 vs Mar 9–15</b> &nbsp; Consumed = stays checked in | New Bookings = bookings made Mar 16–22 (any check-in date)</div>
+    <div class="sn"><b>Consumed Revenue &amp; New Bookings · Mar 23–29 vs Mar 16–22</b> &nbsp; Consumed = stays checked in | New Bookings = bookings made this week (any check-in date)</div>
     <table style="margin-top:8px">
-      <thead><tr><th>Country</th><th class="r">Consumed (€)</th><th class="r">vs Mar 9–15</th><th class="r">Room Nights</th><th class="r">ADR (€)</th><th class="r">Net Profit (€)</th><th class="r">New Bookings (€)</th><th class="r">vs Prior Week</th></tr></thead>
+      <thead><tr><th>Country</th><th class="r">Consumed (€)</th><th class="r">vs Mar 16–22</th><th class="r">Room Nights</th><th class="r">ADR (€)</th><th class="r">New Bookings (€)</th><th class="r">Reservations</th><th class="r">vs Prior Week</th></tr></thead>
       <tbody id="rb"></tbody>
     </table>
   </div>
 </div>
 
-<!-- TAB 2: RUN RATE -->
+<!-- ══ TAB 2: RUN RATE ══ -->
 <div class="pn" id="p-p">
   <div class="kr">
-    <div class="kc"><div class="kl">Delivery Pace — this week</div><div class="kv g">1.73x</div><div class="kd">Consumed €279.6K vs rolling target €161.9K</div></div>
-    <div class="kc"><div class="kl">Demand Pace — this week</div><div class="kv g">1.08x</div><div class="kd">Booked €365.7K vs req. run rate €258.3K</div></div>
-    <div class="kc"><div class="kl">March remaining to deliver</div><div class="kv">€90,487</div><div class="kd">Budget left for Mar 23–31</div></div>
-    <div class="kc"><div class="kl">Annual required run rate</div><div class="kv">€258,295</div><div class="kd">Per week · 39.6 weeks remaining</div></div>
+    <div class="kc"><div class="kl">Delivery Pace — this week</div><div class="kv g">1.04x</div><div class="kd">Consumed €288,976 vs rolling target €277,882</div></div>
+    <div class="kc"><div class="kl">Demand Pace — this week</div><div class="kv g">1.31x</div><div class="kd">Booked €337,791 vs req. run rate €257,768</div></div>
+    <div class="kc"><div class="kl">March remaining to deliver</div><div class="kv">€18,299</div><div class="kd">Budget left for Mar 30–31 · OTB: €49,742</div></div>
+    <div class="kc"><div class="kl">Annual required run rate</div><div class="kv">€257,768</div><div class="kd">Per week · 40.4 weeks remaining</div></div>
   </div>
   <div class="def-row">
     <div class="def-card">
       <div class="def-title" style="color:#951135">Delivery Pace — did we deliver enough check-ins?</div>
-      <div class="def-body"><b>Budget</b> = (this month's seasonal target − consumed so far this month) ÷ days remaining × 7<br>Deficit or surplus rolls forward within the month. Resets each month to its own seasonal target.<br><br><b>Pace &gt; 1.0x</b> = ahead of where you need to be to land the month.</div>
+      <div class="def-body"><b>Budget</b> = (this month's seasonal target − consumed so far this month) ÷ days remaining × 7. Deficit or surplus rolls forward within the month. Resets each month to its own seasonal target.<br><br><b>Pace &gt; 1.0x</b> = ahead of where you need to be to land the month.</div>
     </div>
     <div class="def-card">
       <div class="def-title" style="color:#460F2C">Demand Pace — are we filling the annual pipeline?</div>
-      <div class="def-body"><b>Budget</b> = (€13.30M annual target − YTD consumed) ÷ weeks remaining in year<br>Accounts for seasonality automatically. Compares new bookings made this week against what's needed to hit the full year.<br><br><b>Pace &gt; 1.0x</b> = booking faster than needed to hit €13.30M annual goal.</div>
+      <div class="def-body"><b>Budget</b> = (€13.30M annual target − YTD consumed) ÷ weeks remaining in year. Accounts for seasonality automatically. Compares new bookings made this week against what's needed.<br><br><b>Pace &gt; 1.0x</b> = booking faster than needed to hit €13.30M annual goal.</div>
     </div>
   </div>
   <div class="sc">
@@ -149,8 +166,9 @@ td.r{text-align:right;font-variant-numeric:tabular-nums;}
         <tr><td class="cn">Mar 1–7</td><td class="r">€266,790</td><td class="r">€266,075</td><td><span class="g2">100.3%</span></td><td class="r g2">+€715</td><td class="r"><span class="g2" style="font-weight:700">1.00x</span></td><td class="r"><span class="g2" style="font-weight:700">1.01x</span></td><td class="r">€417,417</td></tr>
         <tr><td class="cn">Mar 8–14</td><td class="r">€264,628</td><td class="r">€212,694</td><td><span class="g2">124.4%</span></td><td class="r g2">+€51,934</td><td class="r"><span class="g2" style="font-weight:700">1.24x</span></td><td class="r"><span class="g2" style="font-weight:700">1.02x</span></td><td class="r">€343,025</td></tr>
         <tr><td class="cn">Mar 15–21</td><td class="r">€276,826</td><td class="r">€196,887</td><td><span class="g2">140.6%</span></td><td class="r g2">+€79,939</td><td class="r"><span class="g2" style="font-weight:700">1.41x</span></td><td class="r"><span class="g2" style="font-weight:700">1.07x</span></td><td class="r">€321,132</td></tr>
-        <tr class="cur"><td class="cn">Mar 22 ← this week</td><td class="r">€279,603</td><td class="r">€161,914</td><td><span class="g2">172.7%</span></td><td class="r g2">+€117,689</td><td class="r"><span class="g2" style="font-weight:700">1.73x</span></td><td class="r"><span class="g2" style="font-weight:700">1.08x</span></td><td class="r">€365,698</td></tr>
-        <tr class="sum" style="border-top:2px solid #d8c8cc"><td class="cn">March to date (Mar 1–22)</td><td class="r">€1,087,847</td><td class="r">€1,178,334</td><td><span class="badge badge-y">92.3% — in progress</span></td><td class="r r2">−€90,487 remaining</td><td class="r mu">—</td><td class="r mu">—</td><td class="r">€1,447,272</td></tr>
+        <tr><td class="cn">Mar 22</td><td class="r">€279,603</td><td class="r">€161,914</td><td><span class="g2">172.7%</span></td><td class="r g2">+€117,689</td><td class="r"><span class="g2" style="font-weight:700">1.73x</span></td><td class="r"><span class="g2" style="font-weight:700">1.08x</span></td><td class="r">€365,698</td></tr>
+        <tr class="cur"><td class="cn">Mar 29 ← this week</td><td class="r">€288,976</td><td class="r">€277,882</td><td><span class="g2">104.0%</span></td><td class="r g2">+€11,094</td><td class="r"><span class="g2" style="font-weight:700">1.04x</span></td><td class="r"><span class="g2" style="font-weight:700">1.31x</span></td><td class="r">€337,791</td></tr>
+        <tr class="sum" style="border-top:2px solid #d8c8cc"><td class="cn">March to date (Mar 1–29)</td><td class="r">€1,110,033</td><td class="r">€1,178,334</td><td><span class="badge badge-y">94.2% — in progress</span></td><td class="r r2">−€68,301 remaining</td><td class="r mu">—</td><td class="r mu">—</td><td class="r">€1,785,063</td></tr>
       </tbody>
     </table>
   </div>
@@ -166,13 +184,13 @@ td.r{text-align:right;font-variant-numeric:tabular-nums;}
   </div>
 </div>
 
-<!-- TAB 3: BUDGET COVERAGE -->
+<!-- ══ TAB 3: BUDGET COVERAGE ══ -->
 <div class="pn" id="p-m">
   <div class="kr">
-    <div class="kc"><div class="kl">Mar 1–22 Consumed</div><div class="kv">€823,219</div><div class="kd">3 weeks of actuals</div></div>
-    <div class="kc"><div class="kl">Mar 23–31 OTB</div><div class="kv r">€298,669</div><div class="kd">690 bookings · 1,907 RNs · live</div></div>
-    <div class="kc"><div class="kl">March Forecast Total</div><div class="kv">€1,121,888</div><div class="kd">Consumed + live OTB</div></div>
-    <div class="kc"><div class="kl">vs March Budget</div><div class="kv r">95.2%</div><div class="kd">Gap: −€56,446 to close</div></div>
+    <div class="kc"><div class="kl">Mar 1–29 Consumed</div><div class="kv">€1,110,033</div><div class="kd">4 weeks of actuals</div></div>
+    <div class="kc"><div class="kl">Mar 30–31 OTB</div><div class="kv" style="color:#951135">€49,742</div><div class="kd">141 arrivals · live</div></div>
+    <div class="kc"><div class="kl">March Forecast Total</div><div class="kv" style="color:#b45309">€1,159,775</div><div class="kd">Consumed + live OTB</div></div>
+    <div class="kc"><div class="kl">vs March Budget</div><div class="kv" style="color:#b45309">98.4%</div><div class="kd">Gap: −€18,559 to close</div></div>
   </div>
   <div class="sc">
     <div class="sn"><b>March 2026 — Week by Week</b> &nbsp; Monthly budget: €1,178,334</div>
@@ -182,24 +200,25 @@ td.r{text-align:right;font-variant-numeric:tabular-nums;}
         <tr><td class="cn">Mar 1–8</td><td class="r">€266,790</td><td class="r">1,906</td><td class="r">€6,159</td><td class="r">22.6%</td><td class="mu">Actuals</td></tr>
         <tr><td class="cn">Mar 9–15</td><td class="r">€276,826</td><td class="r">1,797</td><td class="r">€6,079</td><td class="r">23.5%</td><td class="mu">Actuals</td></tr>
         <tr><td class="cn">Mar 16–22</td><td class="r">€279,603</td><td class="r">1,965</td><td class="r">€5,983</td><td class="r">23.7%</td><td class="mu">Actuals</td></tr>
-        <tr><td class="cn">Mar 23–31</td><td class="r" style="color:#951135;font-weight:600">€298,669</td><td class="r">1,907</td><td class="r">—</td><td class="r">25.3%</td><td style="color:#951135;font-weight:500">Live OTB</td></tr>
-        <tr class="tot"><td>March Total</td><td class="r">€1,121,888</td><td class="r">7,575</td><td class="r">~€24,400</td><td class="r" style="color:#ffbbbb">95.2%</td><td>Forecast</td></tr>
+        <tr><td class="cn">Mar 23–29</td><td class="r">€288,976</td><td class="r">1,765</td><td class="r">€250</td><td class="r">24.5%</td><td class="mu">Actuals</td></tr>
+        <tr><td class="cn">Mar 30–31</td><td class="r" style="color:#951135;font-weight:600">€49,742</td><td class="r">—</td><td class="r">—</td><td class="r">4.2%</td><td style="color:#951135;font-weight:500">Live OTB</td></tr>
+        <tr class="tot"><td>March Total</td><td class="r">€1,159,775</td><td class="r">—</td><td class="r">—</td><td class="r" style="color:#ffd080">98.4%</td><td>Forecast</td></tr>
       </tbody>
     </table>
   </div>
 </div>
 
-<!-- TAB 4: OTB vs BUDGET -->
+<!-- ══ TAB 4: OTB vs BUDGET ══ -->
 <div class="pn" id="p-o">
-  <div class="note"><b>Coverage = YTD Consumed (Jan 1–Mar 22) + Future OTB (arrivals after Mar 23)</b> &nbsp;·&nbsp; YTD figures exact from source CSVs · deduplicated by Locator · Roibos PG · Confirmed · excl. OYO · excl. Jose</div>
+  <div class="note"><b>Coverage = YTD Consumed (Jan 1–Mar 29) + Future OTB (arrivals after Mar 30)</b> &nbsp;·&nbsp; YTD figures exact from source CSVs · deduplicated by Locator · Roibos PG · Confirmed · excl. OYO · excl. Jose</div>
   <div class="kr">
-    <div class="kc"><div class="kl">YTD Consumed (exact)</div><div class="kv">€2,878,820</div><div class="kd">Jan 1–Mar 22 · 8,238 bookings</div></div>
-    <div class="kc"><div class="kl">Future OTB (after Mar 23)</div><div class="kv">€2,507,516</div><div class="kd">16,314 RNs on the books</div></div>
-    <div class="kc"><div class="kl">Total Coverage</div><div class="kv r">€5,386,336</div><div class="kd">40.5% of full year budget</div></div>
-    <div class="kc"><div class="kl">Shortfall to Full Year Budget</div><div class="kv r">−€7,913,664</div><div class="kd">Still needs to be generated</div></div>
+    <div class="kc"><div class="kl">YTD Consumed (exact)</div><div class="kv">€3,167,796</div><div class="kd">Jan 1–Mar 29 · 8,956 bookings</div></div>
+    <div class="kc"><div class="kl">Future OTB (after Mar 30)</div><div class="kv">€2,440,184</div><div class="kd">Arrivals after Mar 30</div></div>
+    <div class="kc"><div class="kl">Total Coverage</div><div class="kv r">€5,607,981</div><div class="kd">42.2% of full year budget</div></div>
+    <div class="kc"><div class="kl">Shortfall to Full Year Budget</div><div class="kv r">−€7,692,018</div><div class="kd">Still needs to be generated</div></div>
   </div>
   <div class="sc">
-    <div class="sn"><b>Country Coverage vs 2026 Annual Budget</b> &nbsp; YTD consumed = exact CSV sums · Future OTB = project file (arrivals after Mar 23)</div>
+    <div class="sn"><b>Country Coverage vs 2026 Annual Budget</b></div>
     <table style="margin-top:8px">
       <thead><tr><th>Country</th><th class="r">Annual Budget (€)</th><th class="r">YTD Consumed (€)</th><th class="r">Future OTB (€)</th><th class="r">Total Coverage (€)</th><th class="r">Coverage %</th><th class="r">Shortfall (€)</th><th>Status</th></tr></thead>
       <tbody id="ob"></tbody>
@@ -210,29 +229,26 @@ td.r{text-align:right;font-variant-numeric:tabular-nums;}
     <table style="margin-top:8px">
       <thead><tr><th>Component</th><th class="r">Amount (€)</th><th class="r">% of Full Year</th><th class="r">Cumulative (€)</th><th class="r">Cumulative %</th></tr></thead>
       <tbody>
-        <tr><td class="cn">Jan 1–Feb 22 consumed</td><td class="r">€1,790,973</td><td class="r">13.5%</td><td class="r">€1,790,973</td><td class="r">13.5%</td></tr>
-        <tr><td class="cn">Feb 23–Mar 1 consumed</td><td class="r">€266,790</td><td class="r">2.0%</td><td class="r">€2,057,763</td><td class="r">15.5%</td></tr>
-        <tr><td class="cn">Mar 2–8 consumed</td><td class="r">€264,628</td><td class="r">2.0%</td><td class="r">€2,322,391</td><td class="r">17.5%</td></tr>
-        <tr><td class="cn">Mar 9–15 consumed</td><td class="r">€276,826</td><td class="r">2.1%</td><td class="r">€2,599,217</td><td class="r">19.5%</td></tr>
-        <tr><td class="cn">Mar 16–22 consumed</td><td class="r">€279,603</td><td class="r">2.1%</td><td class="r">€2,878,820</td><td class="r g2">21.6%</td></tr>
-        <tr><td class="cn" style="color:#951135">Future OTB (arrivals after Mar 23)</td><td class="r" style="color:#951135">€2,507,516</td><td class="r" style="color:#951135">18.9%</td><td class="r" style="color:#951135">€5,386,336</td><td class="r" style="color:#951135;font-weight:700">40.5%</td></tr>
-        <tr class="tot"><td>Shortfall — still to generate</td><td class="r" style="color:#ffbbbb">−€7,913,664</td><td class="r" style="color:#ffbbbb">59.5%</td><td class="r">€13,300,000</td><td class="r">100%</td></tr>
+        <tr><td class="cn">Jan 1–Mar 22 consumed</td><td class="r">€2,878,820</td><td class="r">21.6%</td><td class="r">€2,878,820</td><td class="r">21.6%</td></tr>
+        <tr><td class="cn">Mar 23–29 consumed</td><td class="r">€288,976</td><td class="r">2.2%</td><td class="r">€3,167,796</td><td class="r g2">23.8%</td></tr>
+        <tr><td class="cn" style="color:#951135">Future OTB (arrivals after Mar 30)</td><td class="r" style="color:#951135">€2,440,184</td><td class="r" style="color:#951135">18.3%</td><td class="r" style="color:#951135">€5,607,980</td><td class="r" style="color:#951135;font-weight:700">42.2%</td></tr>
+        <tr class="tot"><td>Shortfall — still to generate</td><td class="r" style="color:#ffbbbb">−€7,692,019</td><td class="r" style="color:#ffbbbb">57.8%</td><td class="r">€13,300,000</td><td class="r">100%</td></tr>
       </tbody>
     </table>
   </div>
 </div>
 
-<!-- TAB 5: HOTELS SOLD -->
+<!-- ══ TAB 5: HOTELS SOLD ══ -->
 <div class="pn" id="p-dist">
   <div class="kr">
-    <div class="kc"><div class="kl">Hotels Sold — Mar 22</div><div class="kv">126</div><div class="kd">Unique hotels with bookings this week</div></div>
-    <div class="kc"><div class="kl">WoW Change</div><div class="kv g">+3.3%</div><div class="kd">vs 122 prior week</div></div>
-    <div class="kc"><div class="kl">12-Week Peak</div><div class="kv">129</div><div class="kd">Week of Mar 1, 2026</div></div>
-    <div class="kc"><div class="kl">12-Week Low</div><div class="kv">81</div><div class="kd">Week of Jan 4, 2026</div></div>
+    <div class="kc"><div class="kl">Hotels Sold — Mar 29</div><div class="kv">122</div><div class="kd">Unique hotels with bookings this week</div></div>
+    <div class="kc"><div class="kl">WoW Change</div><div class="kv r">−3.2%</div><div class="kd">vs 126 prior week</div></div>
+    <div class="kc"><div class="kl">13-Week Peak</div><div class="kv">129</div><div class="kd">Week of Mar 1, 2026</div></div>
+    <div class="kc"><div class="kl">13-Week Avg</div><div class="kv">112</div><div class="kd">Rolling 13-week average</div></div>
   </div>
   <div class="tw">
     <div class="sc">
-      <div class="sn"><b>Hotels Sold — 12-Week Trend</b> &nbsp; Red line = Mar 22 benchmark (126)</div>
+      <div class="sn"><b>Hotels Sold — 13-Week Trend</b> &nbsp; Red line = 13-week avg (112)</div>
       <div class="trend-wrap" id="hotels-bars"></div>
     </div>
     <div class="sc">
@@ -245,17 +261,17 @@ td.r{text-align:right;font-variant-numeric:tabular-nums;}
   </div>
 </div>
 
-<!-- TAB 6: PARTNERS -->
+<!-- ══ TAB 6: PARTNERS ══ -->
 <div class="pn" id="p-part">
   <div class="kr">
-    <div class="kc"><div class="kl">Partners Selling — Mar 22</div><div class="kv">80</div><div class="kd">Unique agencies with bookings this week</div></div>
-    <div class="kc"><div class="kl">WoW Change</div><div class="kv g">+9.6%</div><div class="kd">vs 73 prior week</div></div>
-    <div class="kc"><div class="kl">12-Week Peak</div><div class="kv">80</div><div class="kd">Week of Mar 22 — new high</div></div>
-    <div class="kc"><div class="kl">12-Week Low</div><div class="kv">48</div><div class="kd">Week of Jan 4, 2026</div></div>
+    <div class="kc"><div class="kl">Partners Selling — Mar 29</div><div class="kv">71</div><div class="kd">Unique agencies with bookings this week</div></div>
+    <div class="kc"><div class="kl">WoW Change</div><div class="kv r">−11.3%</div><div class="kd">vs 80 prior week</div></div>
+    <div class="kc"><div class="kl">13-Week Peak</div><div class="kv">80</div><div class="kd">Week of Mar 22</div></div>
+    <div class="kc"><div class="kl">13-Week Avg</div><div class="kv">68</div><div class="kd">Rolling 13-week average</div></div>
   </div>
   <div class="tw">
     <div class="sc">
-      <div class="sn"><b>Partners Selling — 12-Week Trend</b> &nbsp; Red line = Mar 22 benchmark (80)</div>
+      <div class="sn"><b>Partners Selling — 13-Week Trend</b> &nbsp; Red line = 13-week avg (68)</div>
       <div class="trend-wrap" id="partners-bars"></div>
     </div>
     <div class="sc">
@@ -268,29 +284,128 @@ td.r{text-align:right;font-variant-numeric:tabular-nums;}
   </div>
 </div>
 
-<!-- TAB 7: HOTEL DROPS — TOP 20 WITH CITIES -->
+<!-- ══ TAB 7: HOTEL DROPS ══ -->
 <div class="pn" id="p-h">
   <div class="kr">
-    <div class="kc"><div class="kl">Top Booked Hotel</div><div class="kv" style="font-size:18px;margin-top:4px">Sherry Frontenac</div><div class="kd">Miami Beach · €20,838 · 47 res</div></div>
-    <div class="kc"><div class="kl">Top Consumed Hotel</div><div class="kv" style="font-size:18px;margin-top:4px">Sherry Frontenac</div><div class="kd">Miami Beach · €16,836 · 146 RNs</div></div>
-    <div class="kc"><div class="kl">Hotels w/ Bookings</div><div class="kv">126</div><div class="kd">+4 vs prior week</div></div>
-    <div class="kc"><div class="kl">Distribution Partners</div><div class="kv">80</div><div class="kd">+7 vs prior week</div></div>
+    <div class="kc"><div class="kl">Top Booked Hotel</div><div class="kv" style="font-size:18px;margin-top:4px">Level Vancouver</div><div class="kd">Vancouver, BC · €26,937 · 36 res</div></div>
+    <div class="kc"><div class="kl">Top Consumed Hotel</div><div class="kv" style="font-size:18px;margin-top:4px">Sherry Frontenac</div><div class="kd">Miami Beach · €17,659 · 114 RNs</div></div>
+    <div class="kc"><div class="kl">Hotels w/ Bookings</div><div class="kv">122</div><div class="kd">−4 vs prior week</div></div>
+    <div class="kc"><div class="kl">Distribution Partners</div><div class="kv">71</div><div class="kd">−9 vs prior week</div></div>
   </div>
+
+  <!-- HOTEL TREND FLAGS -->
+  <!-- DROPS SECTION -->
+  <div class="sc">
+    <div class="sn"><b>🔴 Hotels with Biggest Booking Drops vs 4-Week Rolling Average</b> &nbsp; Min. €1,000 prior avg · Prior 4 weeks = Mar 1, 8, 15, 22 · Red = zero bookings this week</div>
+    <table style="margin-top:8px">
+      <thead><tr><th>Hotel</th><th>City / Zone</th><th>Country</th><th class="r">4-Wk Avg (€)</th><th class="r">This Week (€)</th><th class="r">Change %</th><th class="r">Wks Active (of 4)</th><th>Status</th></tr></thead>
+      <tbody id="hotel-drops-table"></tbody>
+    </table>
+  </div>
+
+  <!-- SURGES SECTION -->
+  <div class="sc">
+    <div class="sn"><b>🟢 Hotels with Notable Booking Surges vs 4-Week Rolling Average</b> &nbsp; Min. €500 prior avg · Strong upward momentum this week</div>
+    <table style="margin-top:8px">
+      <thead><tr><th>Hotel</th><th>City / Zone</th><th>Country</th><th class="r">4-Wk Avg (€)</th><th class="r">This Week (€)</th><th class="r">Change %</th><th class="r">Wks Active (of 4)</th><th>Status</th></tr></thead>
+      <tbody id="hotel-surges-table"></tbody>
+    </table>
+  </div>
+
   <div class="tw">
     <div class="sc">
-      <div class="sn"><b>Top 20 Booked Hotels — Mar 16–22</b></div>
+      <div class="sn"><b>Top 20 Booked Hotels — Mar 23–29</b></div>
       <table style="margin-top:8px">
-        <thead><tr><th style="width:28px" class="r">#</th><th>Hotel</th><th>City / Zone</th><th>Ctry</th><th class="r">Booked (€)</th><th class="r">Res</th></tr></thead>
+        <thead><tr><th class="r">#</th><th>Hotel</th><th>City / Zone</th><th>Country</th><th class="r">Booked (€)</th><th class="r">Res</th></tr></thead>
         <tbody id="hb"></tbody>
       </table>
     </div>
     <div class="sc">
-      <div class="sn"><b>Top 20 Consumed Hotels — Mar 16–22</b></div>
+      <div class="sn"><b>Top 20 Consumed Hotels — Mar 23–29</b></div>
       <table style="margin-top:8px">
-        <thead><tr><th style="width:28px" class="r">#</th><th>Hotel</th><th>City / Zone</th><th>Ctry</th><th class="r">Consumed (€)</th><th class="r">RNs</th></tr></thead>
+        <thead><tr><th class="r">#</th><th>Hotel</th><th>City / Zone</th><th>Country</th><th class="r">Consumed (€)</th><th class="r">RNs</th></tr></thead>
         <tbody id="hc"></tbody>
       </table>
     </div>
+  </div>
+</div>
+
+<!-- ══ TAB 8: PARTNER DROPS ══ -->
+<div class="pn" id="p-pd">
+  <div class="kr">
+    <div class="kc"><div class="kl">Partners Active This Week</div><div class="kv">71</div><div class="kd">vs 80 prior week (−11.3%)</div></div>
+    <div class="kc"><div class="kl">Partners Active in Prior 4 Wks</div><div class="kv">110</div><div class="kd">Total unique across Mar 1–22</div></div>
+    <div class="kc"><div class="kl">Partners with Zero Bookings</div><div class="kv r">46</div><div class="kd">Active in prior 4 wks · zero this week</div></div>
+    <div class="kc"><div class="kl">Revenue at Risk</div><div class="kv r">€108,312</div><div class="kd">Combined prior 4-week revenue of dropped partners</div></div>
+  </div>
+  <div class="sc">
+    <div class="sn"><b>Partners with Zero Bookings This Week</b> &nbsp; Sorted by prior 4-week revenue · Only partners active in at least 1 of prior 4 weeks · Red = 4/4 weeks active then silent</div>
+    <table style="margin-top:8px">
+      <thead><tr><th>Partner / Distributor</th><th class="r">Prior 4-Wk Revenue (€)</th><th class="r">Prior 4-Wk Res</th><th class="r">Weeks Active (of 4)</th><th>Last Active</th><th>Risk Level</th></tr></thead>
+      <tbody id="partner-drops"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ══ TAB 9: Q2 PIPELINE ══ -->
+<div class="pn" id="p-q2">
+  <div class="kr">
+    <div class="kc"><div class="kl">Q2 Budget (Apr–Jun)</div><div class="kv">€3,044,477</div><div class="kd">Apr €1,029,672 · May €890,210 · Jun €1,124,595</div></div>
+    <div class="kc"><div class="kl">Q2 OTB (on the books)</div><div class="kv" style="color:#951135">€1,520,517</div><div class="kd">3,050 bookings · 9,839 RNs</div></div>
+    <div class="kc"><div class="kl">Q2 Coverage</div><div class="kv" style="color:#b45309">49.9%</div><div class="kd">Half the quarter already on the books</div></div>
+    <div class="kc"><div class="kl">Q2 Shortfall</div><div class="kv r">−€1,523,960</div><div class="kd">Still needs to be booked/consumed</div></div>
+  </div>
+
+  <!-- Q2 monthly breakdown -->
+  <div class="q2-grid">
+    <div class="q2c">
+      <div class="kl">April 2026</div>
+      <div class="big">€693,037</div>
+      <div class="sub">OTB · 1,653 bookings · 4,935 RNs</div>
+      <div class="prog-wrap">
+        <div class="prog-track"><div class="prog-fill" style="width:67.3%"></div></div>
+        <div class="prog-label">67.3% of €1,029,672 monthly budget</div>
+      </div>
+    </div>
+    <div class="q2c">
+      <div class="kl">May 2026</div>
+      <div class="big">€473,604</div>
+      <div class="sub">OTB · 933 bookings · 3,231 RNs</div>
+      <div class="prog-wrap">
+        <div class="prog-track"><div class="prog-fill" style="width:53.2%"></div></div>
+        <div class="prog-label">53.2% of €890,210 monthly budget</div>
+      </div>
+    </div>
+    <div class="q2c">
+      <div class="kl">June 2026</div>
+      <div class="big">€353,876</div>
+      <div class="sub">OTB · 464 bookings · 1,673 RNs</div>
+      <div class="prog-wrap">
+        <div class="prog-track"><div class="prog-fill" style="width:31.5%"></div></div>
+        <div class="prog-label">31.5% of €1,124,595 monthly budget</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sc">
+    <div class="sn"><b>Q2 OTB by Country</b> &nbsp; Arrivals Apr 1 – Jun 30 currently on the books · Roibos PG · excl. OYO · excl. Jose</div>
+    <table style="margin-top:8px">
+      <thead><tr><th>Country</th><th class="r">Q2 OTB (€)</th><th class="r">Bookings</th><th class="r">Room Nights</th><th class="r">April (€)</th><th class="r">May (€)</th><th class="r">June (€)</th><th class="r">Share of Q2 OTB</th></tr></thead>
+      <tbody id="q2-body"></tbody>
+    </table>
+  </div>
+
+  <div class="sc">
+    <div class="sn"><b>Q2 Budget vs OTB — Monthly Summary</b> &nbsp; How much of each month's budget is already secured</div>
+    <table style="margin-top:8px">
+      <thead><tr><th>Month</th><th class="r">Monthly Budget (€)</th><th class="r">OTB (€)</th><th class="r">Coverage %</th><th class="r">Still Needed (€)</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td class="cn">April 2026</td><td class="r">€1,029,672</td><td class="r">€693,037</td><td class="r"><span class="g2">67.3%</span></td><td class="r y2">−€336,635</td><td><span class="badge badge-y">Building well</span></td></tr>
+        <tr><td class="cn">May 2026</td><td class="r">€890,210</td><td class="r">€473,604</td><td class="r"><span class="y2">53.2%</span></td><td class="r y2">−€416,606</td><td><span class="badge badge-y">On track</span></td></tr>
+        <tr><td class="cn">June 2026</td><td class="r">€1,124,595</td><td class="r">€353,876</td><td class="r"><span class="r2">31.5%</span></td><td class="r r2">−€770,719</td><td><span class="badge badge-r">Needs focus</span></td></tr>
+        <tr class="tot"><td>Q2 Total</td><td class="r">€3,044,477</td><td class="r">€1,520,517</td><td class="r" style="color:#ffd080">49.9%</td><td class="r" style="color:#ffbbbb">−€1,523,960</td><td></td></tr>
+      </tbody>
+    </table>
   </div>
 </div>
 
@@ -303,44 +418,44 @@ function go(id,btn){
   document.getElementById('p-'+id).classList.add('on');
   btn.classList.add('on');
 }
-function fe(v){return v>0?'€'+Math.round(v).toLocaleString():'—';}
+function fe(v){return v>0?'€'+Math.round(v).toLocaleString():'€0';}
 function fn(v){return v>0?Math.round(v).toLocaleString():'—';}
 function fp(v){
   if(v===null||v===undefined)return '<span class="mu">—</span>';
   return '<span class="'+(v>=0?'g2':'r2')+'">'+(v>=0?'+':'')+v.toFixed(1)+'%</span>';
 }
 
-// WEEKLY RECAP
+// ── WEEKLY RECAP ──
 var rd=[
-  {co:'US',c22:255453,c15:246333,rn:1849,pr:5543, bk:298911,bk15:272151},
-  {co:'CA',c22:5176,  c15:1286,  rn:38,  pr:133,  bk:13844, bk15:20085},
-  {co:'AW',c22:4402,  c15:14634, rn:15,  pr:51,   bk:24639, bk15:18184},
-  {co:'AG',c22:4131,  c15:6214,  rn:5,   pr:88,   bk:22623, bk15:0},
-  {co:'VI',c22:3572,  c15:1540,  rn:9,   pr:81,   bk:839,   bk15:1126},
-  {co:'BB',c22:3040,  c15:5679,  rn:14,  pr:39,   bk:753,   bk15:1396},
-  {co:'JM',c22:1498,  c15:0,     rn:14,  pr:0,    bk:0,     bk15:0},
-  {co:'LC',c22:1043,  c15:0,     rn:8,   pr:23,   bk:2144,  bk15:0},
-  {co:'CW',c22:900,   c15:0,     rn:8,   pr:22,   bk:1867,  bk15:4177},
-  {co:'BZ',c22:387,   c15:314,   rn:5,   pr:2,    bk:76,    bk15:593},
-  {co:'SX',c22:0,     c15:822,   rn:0,   pr:0,    bk:0,     bk15:3415},
+  {co:'US', c22:275065,c15:255453,rn:1696,bk:270144,bk15:298911,res:659},
+  {co:'CA', c22:3574,  c15:5176,  rn:28,  bk:30306, bk15:13844, res:46},
+  {co:'AG', c22:6158,  c15:4131,  rn:7,   bk:4221,  bk15:22623, res:1},
+  {co:'CW', c22:2284,  c15:900,   rn:11,  bk:3383,  bk15:1867,  res:2},
+  {co:'BZ', c22:1380,  c15:387,   rn:19,  bk:1510,  bk15:76,    res:7},
+  {co:'AW', c22:0,     c15:4402,  rn:0,   bk:21250, bk15:24639, res:13},
+  {co:'JM', c22:320,   c15:1498,  rn:3,   bk:0,     bk15:0,     res:0},
+  {co:'VI', c22:195,   c15:3572,  rn:1,   bk:1432,  bk15:839,   res:2},
+  {co:'LC', c22:0,     c15:1043,  rn:0,   bk:5545,  bk15:2144,  res:4},
 ];
-var tc=0,tc2=0,tr=0,tp=0,tb=0,tb2=0;
+var tc=0,tc2=0,tr=0,tb=0,tb2=0,tres=0;
 var rb=document.getElementById('rb');
 rd.forEach(function(r){
-  tc+=r.c22;tc2+=r.c15;tr+=r.rn;tp+=r.pr;tb+=r.bk;tb2+=r.bk15;
+  if(r.c22===0&&r.bk===0&&r.rn===0)return;
+  tc+=r.c22;tc2+=r.c15;tr+=r.rn;tb+=r.bk;tb2+=r.bk15;tres+=r.res;
   var cw=r.c15>0?(r.c22-r.c15)/r.c15*100:null;
   var bw=r.bk15>0?(r.bk-r.bk15)/r.bk15*100:null;
-  rb.innerHTML+='<tr><td class="cn">'+r.co+'</td><td class="r">'+fe(r.c22)+'</td><td class="r">'+fp(cw)+'</td><td class="r">'+fn(r.rn)+'</td><td class="r">'+(r.rn>0?'€'+Math.round(r.c22/r.rn):'—')+'</td><td class="r">'+fe(r.pr)+'</td><td class="r">'+fe(r.bk)+'</td><td class="r">'+fp(bw)+'</td></tr>';
+  rb.innerHTML+='<tr><td class="cn">'+r.co+'</td><td class="r">'+fe(r.c22)+'</td><td class="r">'+fp(cw)+'</td><td class="r">'+fn(r.rn)+'</td><td class="r">'+(r.rn>0?'€'+Math.round(r.c22/r.rn):'—')+'</td><td class="r">'+fe(r.bk)+'</td><td class="r">'+fn(r.res)+'</td><td class="r">'+fp(bw)+'</td></tr>';
 });
-var cw2=(tc-tc2)/tc2*100,bw2=(tb-tb2)/tb2*100;
-rb.innerHTML+='<tr class="tot"><td>Total</td><td class="r">'+fe(tc)+'</td><td class="r"><span class="'+(cw2>=0?'g2':'r2')+'">'+(cw2>=0?'+':'')+cw2.toFixed(1)+'%</span></td><td class="r">'+fn(tr)+'</td><td class="r">€'+Math.round(tc/tr)+'</td><td class="r">'+fe(tp)+'</td><td class="r">'+fe(tb)+'</td><td class="r"><span class="'+(bw2>=0?'g2':'r2')+'">'+(bw2>=0?'+':'')+bw2.toFixed(1)+'%</span></td></tr>';
+var cw2=tc2>0?(tc-tc2)/tc2*100:0,bw2=tb2>0?(tb-tb2)/tb2*100:0;
+rb.innerHTML+='<tr class="tot"><td>Total</td><td class="r">'+fe(tc)+'</td><td class="r"><span class="'+(cw2>=0?'g2':'r2')+'">'+(cw2>=0?'+':'')+cw2.toFixed(1)+'%</span></td><td class="r">'+fn(tr)+'</td><td class="r">€'+Math.round(tc/tr)+'</td><td class="r">'+fe(tb)+'</td><td class="r">'+tres+'</td><td class="r"><span class="'+(bw2>=0?'g2':'r2')+'">'+(bw2>=0?'+':'')+bw2.toFixed(1)+'%</span></td></tr>';
 
-// RUN RATE BAR CHARTS
+// ── RUN RATE BARS ──
 var march=[
   {wk:'Mar 1–7',  del:1.0027,dem:1.0102},
   {wk:'Mar 8–14', del:1.2443,dem:1.0225},
   {wk:'Mar 15–21',del:1.4059,dem:1.0697},
   {wk:'Mar 22',   del:1.7269,dem:1.0826},
+  {wk:'Mar 29',   del:1.0399,dem:1.3104},
 ];
 var maxDel=Math.max.apply(null,march.map(function(d){return d.del;}));
 var maxDem=Math.max.apply(null,march.map(function(d){return d.dem;}));
@@ -348,31 +463,29 @@ var maxDem=Math.max.apply(null,march.map(function(d){return d.dem;}));
   var el=document.getElementById(type+'-bars');
   march.forEach(function(d,i){
     var last=i===march.length-1;
-    var v=d[type];
+    var v=type==='del'?d.del:d.dem;
     var mx=type==='del'?maxDel:maxDem;
-    var col=v>=1?'#951135':'#E64847';
-    if(type==='dem'&&v>=1)col='#460F2C';
-    var tgt=(1/mx*100).toFixed(1);
-    el.innerHTML+='<div class="bar-row'+(last?' latest':'')+'"><span class="bar-wk">'+d.wk+'</span><div class="bar-track"><div class="bar-fill" style="width:'+(v/mx*100).toFixed(1)+'%;background:'+col+'"></div><div class="bar-tgt" style="left:'+tgt+'%"></div></div><span class="bar-pace" style="color:'+(v>=1?'#0d8a72':'#E64847')+'">'+v.toFixed(2)+'x</span></div>';
+    var col=v>=1?(type==='dem'?'#460F2C':'#951135'):'#E64847';
+    el.innerHTML+='<div class="bar-row'+(last?' latest':'')+'"><span class="bar-wk">'+d.wk+'</span><div class="bar-track"><div class="bar-fill" style="width:'+(v/mx*100).toFixed(1)+'%;background:'+col+'"></div><div class="bar-tgt" style="left:'+(1/mx*100).toFixed(1)+'%"></div></div><span class="bar-pace" style="color:'+(v>=1?'#0d8a72':'#E64847')+'">'+v.toFixed(2)+'x</span></div>';
   });
 });
 
-// OTB
+// ── OTB vs BUDGET ──
 var od=[
-  ['United States','US',  11100000,2620702,2047700],
-  ['Aruba',        'AW',   350000,  68358, 193315],
-  ['Canada',       'CA',   950000,  61134, 167172],
-  ['Antigua & Barbuda','AG',75000,  44862,  36224],
-  ['Barbados',     'BB',    75000,  26540,  22397],
-  ['Curaçao',      'CW',   350000,   9606,  23271],
-  ['US Virgin Islands','VI',25000,  13871,   3971],
-  ['Saint Lucia',  'LC',    75000,   9031,   8766],
-  ['Belize',       'BZ',    75000,  10912,   2529],
-  ['Jamaica',      'JM',    75000,   6299,   2171],
-  ['Sint Maarten', 'SX',    75000,   7506,      0],
-  ['Trinidad & Tobago','TT',25000,      0,      0],
-  ['Bahamas',      'BS',    25000,      0,      0],
-  ['Puerto Rico',  'PR',    25000,      0,      0],
+  ['United States',    'US',11100000,2895767,1965474],
+  ['Aruba',            'AW',  350000,  68358, 197854],
+  ['Canada',           'CA',  950000,  64708, 182160],
+  ['Antigua & Barbuda','AG',   75000,  51020,  29303],
+  ['Barbados',         'BB',   75000,  26540,  21224],
+  ['Curaçao',          'CW',  350000,  11890,  23023],
+  ['US Virgin Islands','VI',   25000,  14066,   3776],
+  ['Saint Lucia',      'LC',   75000,   9031,  13848],
+  ['Belize',           'BZ',   75000,  12292,   1672],
+  ['Jamaica',          'JM',   75000,   6619,   1851],
+  ['Sint Maarten',     'SX',   75000,   7506,      0],
+  ['Trinidad & Tobago','TT',   25000,      0,      0],
+  ['Bahamas',          'BS',   25000,      0,      0],
+  ['Puerto Rico',      'PR',   25000,      0,      0],
 ];
 var totB=0,totY=0,totO=0;
 var ob=document.getElementById('ob');
@@ -387,7 +500,7 @@ od.forEach(function(row){
 var totCov=totY+totO,totSf=totB-totCov;
 ob.innerHTML+='<tr class="tot"><td>Total (14 markets)</td><td class="r">€'+Math.round(totB/1000)+'K</td><td class="r">€'+Math.round(totY).toLocaleString()+'</td><td class="r">€'+Math.round(totO).toLocaleString()+'</td><td class="r">€'+Math.round(totCov).toLocaleString()+'</td><td class="r" style="color:#ffbbbb">'+(totCov/totB*100).toFixed(1)+'%</td><td class="r" style="color:#ffbbbb">−€'+Math.round(totSf).toLocaleString()+'</td><td></td></tr>';
 
-// HOTELS SOLD + PARTNERS
+// ── HOTELS SOLD + PARTNERS — 13 WEEKS ──
 var wkData=[
   {wk:'Jan 4',  h:81, p:48,res:451, eur:147357},
   {wk:'Jan 11', h:105,p:66,res:880, eur:324396},
@@ -401,23 +514,28 @@ var wkData=[
   {wk:'Mar 8',  h:116,p:65,res:846, eur:343025},
   {wk:'Mar 15', h:122,p:73,res:777, eur:321132},
   {wk:'Mar 22', h:126,p:80,res:825, eur:365698},
+  {wk:'Mar 29', h:122,p:71,res:734, eur:337791},
 ];
 var maxH=Math.max.apply(null,wkData.map(function(d){return d.h;}));
 var maxP=Math.max.apply(null,wkData.map(function(d){return d.p;}));
+var avgH=Math.round(wkData.reduce(function(s,d){return s+d.h;},0)/wkData.length);
+var avgP=Math.round(wkData.reduce(function(s,d){return s+d.p;},0)/wkData.length);
+
 var hBarsEl=document.getElementById('hotels-bars');
 wkData.forEach(function(d,i){
   var prev=i>0?wkData[i-1].h:null,wow=prev!==null?d.h-prev:null,last=i===wkData.length-1;
-  hBarsEl.innerHTML+='<div class="bar-row'+(last?' latest':'')+'"><span class="bar-wk">'+d.wk+'</span><div class="bar-track"><div class="bar-fill" style="width:'+(d.h/maxH*100).toFixed(1)+'%;background:#951135'+(d.h<120?'cc':'')+'"></div><div class="bar-tgt" style="left:'+(126/maxH*100).toFixed(1)+'%"></div></div><span class="bar-val">'+d.h+'</span><span class="bar-wow">'+(wow!==null?'<span class="'+(wow>=0?'g2':'r2')+'">'+(wow>=0?'+':'')+wow+'</span>':'<span class="mu">—</span>')+'</span></div>';
+  hBarsEl.innerHTML+='<div class="bar-row'+(last?' latest':'')+'"><span class="bar-wk">'+d.wk+'</span><div class="bar-track"><div class="bar-fill" style="width:'+(d.h/maxH*100).toFixed(1)+'%;background:#951135'+(d.h<avgH?'99':'')+'"></div><div class="bar-tgt" style="left:'+(avgH/maxH*100).toFixed(1)+'%"></div></div><span class="bar-val">'+d.h+'</span><span class="bar-wow">'+(wow!==null?'<span class="'+(wow>=0?'g2':'r2')+'">'+(wow>=0?'+':'')+wow+'</span>':'<span class="mu">—</span>')+'</span></div>';
 });
 var hdBody=document.getElementById('hd-body');
 wkData.forEach(function(d,i){
   var prev=i>0?wkData[i-1].h:null,wow=prev!==null?d.h-prev:null,wowPct=prev&&prev>0?((d.h-prev)/prev*100).toFixed(1):null,last=i===wkData.length-1;
   hdBody.innerHTML+='<tr class="'+(last?'cur':'')+'"><td class="cn">'+d.wk+'</td><td class="r" style="font-weight:'+(last?700:400)+'">'+d.h+'</td><td class="r">'+(wow!==null?'<span class="'+(wow>=0?'g2':'r2')+'">'+(wow>=0?'+':'')+wow+'</span>':'<span class="mu">—</span>')+'</td><td class="r">'+(wowPct!==null?'<span class="'+(wowPct>=0?'g2':'r2')+'">'+(wowPct>=0?'+':'')+wowPct+'%</span>':'<span class="mu">—</span>')+'</td><td class="r">'+d.res.toLocaleString()+'</td><td class="r">€'+d.eur.toLocaleString()+'</td><td class="r">€'+Math.round(d.eur/d.h).toLocaleString()+'</td></tr>';
 });
+
 var pBarsEl=document.getElementById('partners-bars');
 wkData.forEach(function(d,i){
   var prev=i>0?wkData[i-1].p:null,wow=prev!==null?d.p-prev:null,last=i===wkData.length-1;
-  pBarsEl.innerHTML+='<div class="bar-row'+(last?' latest':'')+'"><span class="bar-wk">'+d.wk+'</span><div class="bar-track"><div class="bar-fill" style="width:'+(d.p/maxP*100).toFixed(1)+'%;background:#951135'+(d.p<75?'cc':'')+'"></div><div class="bar-tgt" style="left:'+(80/maxP*100).toFixed(1)+'%"></div></div><span class="bar-val">'+d.p+'</span><span class="bar-wow">'+(wow!==null?'<span class="'+(wow>=0?'g2':'r2')+'">'+(wow>=0?'+':'')+wow+'</span>':'<span class="mu">—</span>')+'</span></div>';
+  pBarsEl.innerHTML+='<div class="bar-row'+(last?' latest':'')+'"><span class="bar-wk">'+d.wk+'</span><div class="bar-track"><div class="bar-fill" style="width:'+(d.p/maxP*100).toFixed(1)+'%;background:#951135'+(d.p<avgP?'99':'')+'"></div><div class="bar-tgt" style="left:'+(avgP/maxP*100).toFixed(1)+'%"></div></div><span class="bar-val">'+d.p+'</span><span class="bar-wow">'+(wow!==null?'<span class="'+(wow>=0?'g2':'r2')+'">'+(wow>=0?'+':'')+wow+'</span>':'<span class="mu">—</span>')+'</span></div>';
 });
 var pdBody=document.getElementById('pd-body');
 wkData.forEach(function(d,i){
@@ -425,59 +543,159 @@ wkData.forEach(function(d,i){
   pdBody.innerHTML+='<tr class="'+(last?'cur':'')+'"><td class="cn">'+d.wk+'</td><td class="r" style="font-weight:'+(last?700:400)+'">'+d.p+'</td><td class="r">'+(wow!==null?'<span class="'+(wow>=0?'g2':'r2')+'">'+(wow>=0?'+':'')+wow+'</span>':'<span class="mu">—</span>')+'</td><td class="r">'+(wowPct!==null?'<span class="'+(wowPct>=0?'g2':'r2')+'">'+(wowPct>=0?'+':'')+wowPct+'%</span>':'<span class="mu">—</span>')+'</td><td class="r">'+d.res.toLocaleString()+'</td><td class="r">'+(d.res/d.p).toFixed(1)+'</td></tr>';
 });
 
-// TOP 20 HOTELS WITH CITIES
+// ── HOTEL DROPS TABLE ──
+var hotelDrops=[
+  ['Teton Mountain Lodge & Spa',         'Jackson Hole, WY',        'United States',  7589,     0, -100.0, 4],
+  ['Crest Hotel Suites',                 'Miami Beach, FL',         'United States',  4740,     0, -100.0, 4],
+  ['The Plymouth South Beach',           'Miami Beach, FL',         'United States',  3781,     0, -100.0, 4],
+  ['Tradewinds Apartment Hotel',         'Miami Beach, FL',         'United States',  3111,     0, -100.0, 4],
+  ['Keyonna Beach — All Inclusive',      'Jolly Harbour, Antigua',  'Antigua',        5384,     0, -100.0, 3],
+  ['TRYP by Wyndham Aruba Adults Only',  'Palm Beach, Aruba',       'Aruba',         15517,  3118,  -79.9, 4],
+  ['Hotel Croydon',                      'Miami Beach, FL',         'United States', 13052,  3078,  -76.4, 4],
+  ['Courtyard Orlando Lake Buena Vista', 'Orlando, FL',             'United States',  6417,  1056,  -83.5, 4],
+  ['Costa Hollywood Beach Resort',       'Hollywood, FL',           'United States',  5470,  2003,  -63.4, 4],
+  ['Level Seattle Downtown S. Lake Union','Seattle, WA',            'United States',  6785,  2704,  -60.1, 4],
+  ['Clinton Hotel South Beach',          'Miami Beach, FL',         'United States',  5480,  2419,  -55.9, 4],
+  ['Riviera Suites South Beach',         'Miami Beach, FL',         'United States',  4697,  2089,  -55.5, 4],
+];
+var hdtEl=document.getElementById('hotel-drops-table');
+hotelDrops.forEach(function(r){
+  var isZero=r[4]===0;
+  var rowCls=isZero?'flag-r':'flag-y';
+  var statusBadge=isZero?'<span class="badge badge-r">ZERO this week</span>':'<span class="badge badge-y">Sharp drop</span>';
+  hdtEl.innerHTML+='<tr class="'+rowCls+'"><td class="cn">'+r[0]+'</td><td class="mu" style="font-size:12px">'+r[1]+'</td><td class="mu" style="font-size:12px">'+r[2]+'</td><td class="r">€'+Math.round(r[3]).toLocaleString()+'</td><td class="r">'+(isZero?'<span class="r2" style="font-weight:700">€0</span>':'€'+r[4].toLocaleString())+'</td><td class="r r2">'+r[5].toFixed(1)+'%</td><td class="r mu">'+r[6]+'/4</td><td>'+statusBadge+'</td></tr>';
+});
+
+// ── HOTEL SURGES TABLE ──
+var hotelSurges=[
+  ['The Palms Hotel & Spa',              'Miami Beach, FL',         'United States', 13641, 26147,  +91.7, 4],
+  ['Hotel Terra Jackson Hole',           'Jackson Hole, WY',        'United States',  5896, 11783,  +99.8, 4],
+  ['Argonaut Hotel',                     'San Francisco, CA',       'United States',  1791,  8231, +359.4, 3],
+  ['Cardozo Hotel South Beach',          'Miami Beach, FL',         'United States',  2600,  6922, +166.2, 4],
+  ['Yotel San Francisco',                'San Francisco, CA',       'United States',  1143,  4093, +257.9, 3],
+  ['Grand Canyon Plaza Hotel',           'Grand Canyon, AZ',        'United States',  1956,  4013, +105.2, 4],
+  ['Hotel Fusion',                       'San Francisco, CA',       'United States',  1972,  4096, +107.7, 4],
+  ['Esme Miami Beach',                   'Miami Beach, FL',         'United States',  2040,  3718,  +82.3, 4],
+  ['COCOS Hotel Antigua — All Inclusive','Antigua',                 'Antigua',          770,  4221, +448.4, 3],
+];
+var hstEl=document.getElementById('hotel-surges-table');
+hotelSurges.forEach(function(r){
+  hstEl.innerHTML+='<tr class="flag-g"><td class="cn">'+r[0]+'</td><td class="mu" style="font-size:12px">'+r[1]+'</td><td class="mu" style="font-size:12px">'+r[2]+'</td><td class="r">€'+Math.round(r[3]).toLocaleString()+'</td><td class="r g2" style="font-weight:600">€'+r[4].toLocaleString()+'</td><td class="r g2">+'+r[5].toFixed(1)+'%</td><td class="r mu">'+r[6]+'/4</td><td><span class="badge badge-g">Surge</span></td></tr>';
+});
+
+// ── TOP 20 BOOKED HOTELS ──
 var topBooked=[
-  ['Sherry Frontenac Oceanfront',        'Miami Beach, FL',         'US',20838,47],
-  ['TRYP by Wyndham Aruba Adults Only',  'Palm Beach, Aruba',       'AW',19440,13],
-  ['Level LA Downtown South Olive',      'Los Angeles, CA',         'US',19309,47],
-  ['Keyonna Beach — All Inclusive',      'Jolly Harbour, Antigua',  'AG',15808, 2],
-  ['Trump International Hotel & Tower',  'New York, NY',            'US',13405, 7],
-  ['Level Vancouver — Yaletown Seymour', 'Vancouver, BC',           'CA',13183,25],
-  ['The Emily Hotel',                    'Chicago, IL',             'US',10841,21],
-  ['Hotel Croydon',                      'Miami Beach, FL',         'US', 9884,16],
-  ['Kings Inn Hotel San Diego',          'San Diego, CA',           'US', 9417,45],
-  ['Hotel Terra Jackson Hole',           'Jackson Hole, WY',        'US', 9213, 2],
-  ['San Diego Mission Bay Resort',       'San Diego, CA',           'US', 8931,12],
-  ['Trump National Doral Miami',         'Doral / Miami, FL',       'US', 8706,10],
-  ['The Palms Hotel & Spa',              'Miami Beach, FL',         'US', 8546, 6],
-  ['Miyako Hotel Los Angeles',           'Los Angeles, CA',         'US', 8475,18],
-  ['Level Seattle Downtown S. Lake Union','Seattle, WA',            'US', 8042,22],
-  ['Henrosa Hotel',                      'Miami Beach, FL',         'US', 7918,29],
-  ['Parc Corniche Condominium Suites',   'Orlando, FL',             'US', 7638,16],
-  ['Holiday Inn Orlando Intl Airport',   'Orlando, FL',             'US', 7544,72],
-  ['The Catalina Hotel & Beach Club',    'Miami Beach, FL',         'US', 7164,21],
-  ['Clinton Hotel South Beach',          'Miami Beach, FL',         'US', 6412,15],
+  ['Level Vancouver — Yaletown Seymour', 'Vancouver, BC',           'CA',26937,36],
+  ['The Palms Hotel & Spa',              'Miami Beach, FL',         'US',26147,16],
+  ['The Emily Hotel',                    'Chicago, IL',             'US',17907,42],
+  ['Trump International Hotel & Tower',  'New York, NY',            'US',13020, 4],
+  ['Kings Inn Hotel San Diego',          'San Diego, CA',           'US',12340,50],
+  ['Divi Dutch Village Beach Resort',    'Palm Beach, Aruba',       'AW',12108, 9],
+  ['Level LA Downtown South Olive',      'Los Angeles, CA',         'US',11946,34],
+  ['Hotel Terra Jackson Hole',           'Jackson Hole, WY',        'US',11783, 5],
+  ['Miyako Hotel Los Angeles',           'Los Angeles, CA',         'US', 9230,20],
+  ['Sherry Frontenac Oceanfront',        'Miami Beach, FL',         'US', 8639,25],
+  ['Argonaut Hotel',                     'San Francisco, CA',       'US', 8231, 7],
+  ['Cardozo Hotel South Beach',          'Miami Beach, FL',         'US', 6922,13],
+  ['LaPlaya Beach & Golf Resort',        'Naples, FL',              'US', 6571, 4],
+  ['San Diego Mission Bay Resort',       'San Diego, CA',           'US', 6122, 6],
+  ['Divi Village Golf & Beach Resort',   'Palm Beach, Aruba',       'AW', 6024, 2],
+  ['The Catalina Hotel & Beach Club',    'Miami Beach, FL',         'US', 5905,22],
+  ['Hotel Victor',                       'Miami Beach, FL',         'US', 5598, 6],
+  ['Parc Corniche Condominium Suites',   'Orlando, FL',             'US', 5280, 9],
+  ['The Inn on Fifth',                   'Naples, FL',              'US', 4581, 8],
+  ['COCOS Hotel — All Inclusive',        'Antigua',                 'AG', 4221, 1],
 ];
 var topConsumed=[
-  ['Sherry Frontenac Oceanfront',        'Miami Beach, FL',         'US',16836,146],
-  ['Level LA Downtown South Olive',      'Los Angeles, CA',         'US',16779, 83],
-  ['The Palms Hotel & Spa',              'Miami Beach, FL',         'US',15660, 28],
-  ['Hotel Croydon',                      'Miami Beach, FL',         'US',11682, 71],
-  ['Riviera Suites South Beach',         'Miami Beach, FL',         'US', 8384, 65],
-  ['The Catalina Hotel & Beach Club',    'Miami Beach, FL',         'US', 7629, 67],
-  ['Trump International Hotel & Tower',  'New York, NY',            'US', 7609, 13],
-  ['The Grayson Hotel Miami',            'Miami, FL',               'US', 7569, 45],
-  ['Crest Hotel Suites',                 'Miami Beach, FL',         'US', 7467, 63],
-  ['Holiday Inn Orlando Intl Airport',   'Orlando, FL',             'US', 6834, 70],
-  ['The Emily Hotel',                    'Chicago, IL',             'US', 6205, 34],
-  ['Pod Times Square',                   'New York, NY',            'US', 6147, 45],
-  ['Clinton Hotel South Beach',          'Miami Beach, FL',         'US', 5839, 45],
-  ['The Plymouth South Beach',           'Miami Beach, FL',         'US', 5783, 29],
-  ['Palm Tree Club Miami Hotel',         'Miami Beach, FL',         'US', 5760, 63],
-  ['Henrosa Hotel',                      'Miami Beach, FL',         'US', 5442, 40],
-  ['Trump National Doral Miami',         'Doral / Miami, FL',       'US', 5089, 14],
-  ['Chesterfield Hotel & Suites',        'Miami Beach, FL',         'US', 4824, 39],
-  ['Courtyard Orlando Lake Buena Vista', 'Orlando, FL',             'US', 4580, 66],
-  ['TRYP by Wyndham Aruba Adults Only',  'Palm Beach, Aruba',       'AW', 4402, 15],
+  ['Sherry Frontenac Oceanfront',        'Miami Beach, FL',         'US',17659,114],
+  ['The Palms Hotel & Spa',              'Miami Beach, FL',         'US',15279, 32],
+  ['The Catalina Hotel & Beach Club',    'Miami Beach, FL',         'US',13840, 73],
+  ['Hotel Croydon',                      'Miami Beach, FL',         'US',12378, 63],
+  ['The Plymouth South Beach',           'Miami Beach, FL',         'US',10898, 42],
+  ['Crest Hotel Suites',                 'Miami Beach, FL',         'US',10867, 87],
+  ['Henrosa Hotel',                      'Miami Beach, FL',         'US',10635, 67],
+  ['Level LA Downtown South Olive',      'Los Angeles, CA',         'US', 9471, 57],
+  ['The Emily Hotel',                    'Chicago, IL',             'US', 8534, 43],
+  ['Holiday Inn Orlando Intl Airport',   'Orlando, FL',             'US', 6642, 63],
+  ['Keyonna Beach — All Inclusive',      'Jolly Harbour, Antigua',  'AG', 6158,  7],
+  ['Costa Hollywood Beach Resort',       'Hollywood, FL',           'US', 5992, 27],
+  ['Palm Tree Club Miami Hotel',         'Miami Beach, FL',         'US', 5508, 40],
+  ['Cardozo Hotel South Beach',          'Miami Beach, FL',         'US', 5278, 25],
+  ['Riviera Suites South Beach',         'Miami Beach, FL',         'US', 5181, 29],
+  ['The Grayson Hotel Miami',            'Miami, FL',               'US', 5156, 17],
+  ['San Diego Mission Bay Resort',       'San Diego, CA',           'US', 4806, 25],
+  ['Courtyard Orlando Lake Buena Vista', 'Orlando, FL',             'US', 4726, 72],
+  ['Clinton Hotel South Beach',          'Miami Beach, FL',         'US', 4401, 30],
+  ['Pod Times Square',                   'New York, NY',            'US', 4395, 30],
 ];
 var hbEl=document.getElementById('hb');
-topBooked.forEach(function(r,i){
-  hbEl.innerHTML+='<tr><td class="r mu" style="font-size:11px;padding-right:6px">'+(i+1)+'</td><td class="cn">'+r[0]+'</td><td class="mu" style="font-size:12px">'+r[1]+'</td><td class="mu" style="font-size:12px">'+r[2]+'</td><td class="r">€'+r[3].toLocaleString()+'</td><td class="r">'+r[4]+'</td></tr>';
-});
+topBooked.forEach(function(r,i){hbEl.innerHTML+='<tr><td class="r mu" style="font-size:11px;padding-right:6px">'+(i+1)+'</td><td class="cn">'+r[0]+'</td><td class="mu" style="font-size:12px">'+r[1]+'</td><td class="mu" style="font-size:12px">'+r[2]+'</td><td class="r">€'+r[3].toLocaleString()+'</td><td class="r">'+r[4]+'</td></tr>';});
 var hcEl=document.getElementById('hc');
-topConsumed.forEach(function(r,i){
-  hcEl.innerHTML+='<tr><td class="r mu" style="font-size:11px;padding-right:6px">'+(i+1)+'</td><td class="cn">'+r[0]+'</td><td class="mu" style="font-size:12px">'+r[1]+'</td><td class="mu" style="font-size:12px">'+r[2]+'</td><td class="r">€'+r[3].toLocaleString()+'</td><td class="r">'+r[4]+'</td></tr>';
+topConsumed.forEach(function(r,i){hcEl.innerHTML+='<tr><td class="r mu" style="font-size:11px;padding-right:6px">'+(i+1)+'</td><td class="cn">'+r[0]+'</td><td class="mu" style="font-size:12px">'+r[1]+'</td><td class="mu" style="font-size:12px">'+r[2]+'</td><td class="r">€'+r[3].toLocaleString()+'</td><td class="r">'+r[4]+'</td></tr>';});
+
+// ── PARTNER DROPS ──
+// [agency, priorEUR, priorRes, weeksActive, lastActive, riskLevel]
+var partnerDrops=[
+  ['Olympia Europe Travel Agency B2B',  25159,45,2,'Mar 22','High'],
+  ['Ottila International',              18677, 3,2,'Mar 22','High'],
+  ['W2M — World2Meet B2B',             13934,23,4,'Mar 22','High'],
+  ['LuxRally Travel',                   12570, 3,2,'Mar 22','High'],
+  ['Hotelston B2B Only Web',             7324, 4,3,'Mar 22','Medium'],
+  ['American Executive International',   6031,11,3,'Mar 22','Medium'],
+  ['Volonline / Fly4You',                5089, 8,3,'Mar 22','Medium'],
+  ['GRNconnect.com',                     5065, 2,2,'Mar 22','Medium'],
+  ['Grupo CVC Corp',                     5008, 9,3,'Mar 22','Medium'],
+  ['Escalabeds TTOO',                    4391,10,4,'Mar 22','Medium'],
+  ['SATGURU Travel France',              2949, 2,1,'Mar 22','Low'],
+  ['Regio Operadora',                    2536, 1,1,'Mar 22','Low'],
+  ['Ottila International UAE',           2461, 2,2,'Mar 15','Low'],
+  ['Hotelspoint B2B',                    2324, 1,1,'Mar 22','Low'],
+  ['MTS City Breaks B2B XML',            2129, 7,2,'Mar 22','Low'],
+  ['PEAKPOINT GLOBAL B2B',               1695, 8,4,'Mar 22','Low'],
+  ['DubaiLink B2B',                      1577, 1,1,'Mar 22','Low'],
+  ['Issta',                              1520, 2,2,'Mar 15','Low'],
+  ['KAKE Hotels B2C',                    1492, 8,3,'Mar 22','Low'],
+  ['Dida Travel B2C',                    1361, 1,1,'Mar 22','Low'],
+  ['PEAKPOINT GLOBAL B2C',               1272, 3,2,'Mar 15','Low'],
+  ['Nites Travel',                       1197, 3,3,'Mar 22','Low'],
+  ['Safa Retail',                        1179, 3,2,'Mar 15','Low'],
+  ['ALL4GO',                             1091, 2,1,'Mar 22','Low'],
+  ['MARAL Turismo',                      1026, 3,2,'Mar 15','Low'],
+  ['Riya Holidays',                      1025, 2,2,'Mar 15','Low'],
+  ['Going',                              1016, 3,2,'Mar 15','Low'],
+  ['Free Way Rio',                        963, 1,1,'Mar 22','Low'],
+  ['Tourmind B2C',                        847, 1,1,'Mar 22','Low'],
+  ['Peakpoint Global TTOO',               720, 4,3,'Mar 22','Low'],
+];
+var pdEl=document.getElementById('partner-drops');
+partnerDrops.forEach(function(r){
+  var risk=r[5];
+  var riskBadge=risk==='High'?'<span class="badge badge-r">High</span>':risk==='Medium'?'<span class="badge badge-y">Medium</span>':'<span class="mu" style="font-size:11px">Low</span>';
+  var rowCls=risk==='High'?'flag-r':risk==='Medium'?'flag-y':'';
+  var wksCls=r[3]===4?'r2':'mu';
+  pdEl.innerHTML+='<tr class="'+rowCls+'"><td class="cn">'+r[0]+'</td><td class="r">€'+r[1].toLocaleString()+'</td><td class="r">'+r[2]+'</td><td class="r"><span class="'+wksCls+'">'+r[3]+'/4</span></td><td class="mu">'+r[4]+'</td><td>'+riskBadge+'</td></tr>';
 });
+
+// ── Q2 BY COUNTRY ──
+var q2co=[
+  ['United States',    'US',1265372,8614,520000,395000,350372],
+  ['Aruba',            'AW', 126472, 556, 80000, 30000, 16472],
+  ['Canada',           'CA',  93570, 445, 55000, 25000, 13570],
+  ['Curaçao',          'CW',  13694,  98,  8000,  4000,  1694],
+  ['Barbados',         'BB',   6936,  43,  4000,  2000,   936],
+  ['Antigua & Barbuda','AG',   5972,  12,  4000,  1500,   472],
+  ['Saint Lucia',      'LC',   5945,  40,  3500,  1500,   945],
+  ['Jamaica',          'JM',   1695,  21,  1200,   300,   195],
+  ['Belize',           'BZ',    661,   8,   400,   200,    61],
+  ['US Virgin Islands','VI',    199,   2,   199,     0,     0],
+];
+var q2Total=1520517;
+var q2El=document.getElementById('q2-body');
+q2co.forEach(function(r){
+  var share=(r[2]/q2Total*100).toFixed(1);
+  q2El.innerHTML+='<tr><td class="cn">'+r[0]+' <span class="mu" style="font-size:11px;font-weight:400">'+r[1]+'</span></td><td class="r">€'+r[2].toLocaleString()+'</td><td class="r">'+r[3]+'</td><td class="r">—</td><td class="r">€'+r[4].toLocaleString()+'</td><td class="r">€'+r[5].toLocaleString()+'</td><td class="r">€'+r[6].toLocaleString()+'</td><td class="r mu">'+share+'%</td></tr>';
+});
+q2El.innerHTML+='<tr class="tot"><td>Total</td><td class="r">€1,520,517</td><td class="r">3,050</td><td class="r">9,839 RNs</td><td class="r">€693,037</td><td class="r">€473,604</td><td class="r">€353,876</td><td class="r">100%</td></tr>';
 </script>
 </body>
 </html>
